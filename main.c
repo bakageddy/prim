@@ -1,10 +1,13 @@
 #define PRIM_LINE_IMPL
 #include "line.h"
 
+#define PRIM_CIRCLE_IMPL
+#include "circle.h"
+
 #include <ncurses.h>
 
 int main(void) {
-	char msg[] = "DDA Line Drawing Algorithm";
+	char msg[] = "Bresenham Circle Drawing Algorithm";
 	size_t len = sizeof(msg);
 
 	initscr();
@@ -12,16 +15,22 @@ int main(void) {
 	addstr(msg);
 	refresh();
 
-	Point a = {
-		.x = 0,
-		.y = 0,
+	// Point a = {
+	// 	.x = 0,
+	// 	.y = 0,
+	// };
+	//
+	// Point b = {
+	// 	.x = COLS,
+	// 	.y = LINES,
+	// };
+	// draw_line_dda((Line) {.a = a, .b = b});
+	
+	Point c = {
+		.x = COLS / 2,
+		.y = LINES / 2,
 	};
-
-	Point b = {
-		.x = COLS,
-		.y = LINES,
-	};
-	draw_line_dda((Line) {.a = a, .b = b});
+	draw_circle_bresenham((Circle) {.c = c, .r = 10});
 
 	refresh();
 

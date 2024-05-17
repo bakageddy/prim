@@ -14,6 +14,7 @@ typedef struct {
 void draw_point(Point p);
 void draw_line_dda(Line l);
 
+#define PRIM_LINE_IMPL
 #ifdef PRIM_LINE_IMPL
 
 #include <ncurses.h>
@@ -35,8 +36,8 @@ void draw_line_dda(Line l) {
 	float y = l.a.y;
 	for (int i = 0; i < steps; i++) {
 		Point p = {
-			.x = floor(x),
-			.y = floor(y),
+			.x = (int) floor(x),
+			.y = (int) floor(y),
 		};
 		draw_point(p);
 		x += xinc;
@@ -46,6 +47,7 @@ void draw_line_dda(Line l) {
 
 // TODO: implement bresenham line drawing algorithm
 void draw_line_bresenham(Line l) {
+	(void) l;
 	return;
 }
 
